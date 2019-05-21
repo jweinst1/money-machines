@@ -6,8 +6,15 @@
 
 If you are not familiar with CA or other types of automatan, you can read the [introduction here](/introduction.md).
 
+### Languages
 
-## Directory
+This blog will use a variety of programming languages, but focus primarily on `C`, `C++`, and `Python`. We will also likely explore and visit some implementations in `Rust` and `JavaScript`.
 
-* Traders
-* Markets
+### Examples
+
+Nearly all of the code examples found in the blog posts can be located in the examples/ directory of this repo.
+
+
+## Posts
+
+1. The mechanics of demand
