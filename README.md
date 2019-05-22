@@ -8,6 +8,11 @@ Posts here will also be posted on other blog platforms such as medium or wordpre
 
 If you are not familiar with CA or other types of automatan, you can read the [introduction here](/introduction.md).
 
+
+## Posts
+
+1. The mechanics of demand
+
 #### Languages
 
 This blog will use a variety of programming languages, but focus primarily on `C`, `C++`, and `Python`. We will also likely explore and visit some implementations in `Rust` and `JavaScript`.
@@ -15,8 +20,3 @@ This blog will use a variety of programming languages, but focus primarily on `C
 #### Examples
 
 Nearly all of the code examples found in the blog posts can be located in the examples/ directory of this repo. Larger, buildable code examples will be removed to their own repos.
-
-
-## Posts
-
-1. The mechanics of demand
