@@ -12,7 +12,7 @@ This blog will use a variety of programming languages, but focus primarily on `C
 
 #### Examples
 
-Nearly all of the code examples found in the blog posts can be located in the examples/ directory of this repo.
+Nearly all of the code examples found in the blog posts can be located in the examples/ directory of this repo. Larger, buildable code examples will be removed to their own repos.
 
 
 ## Posts
