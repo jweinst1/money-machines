@@ -6,7 +6,7 @@
 
 Posts here will also be posted on other blog platforms such as medium or wordpress, but this repo will always have the freshest, up to date work.
 
-If you are not familiar with CA or other types of automatan, you can read the [introduction here](/introduction.md).
+If you are not familiar with CA or other types of automatan, you can read the [introduction here](/introduction.md). You can also read the [forward here](/forward.md).
 
 
 ## Posts

@@ -1,0 +1,8 @@
+# Forward
+
+This blog intends to explore, experiment, and discover the use of cellular automata in modeling financial phenomena. This includes finanical markets, trading markets, stocks, exchanges, demand, supply, currency, price fluctuation, and much more. The potential applications of CA far exceed the sparse implementations of CA known today. *Conway's game of life*, and other classical CA only attempt to simulate a fundamental set of rules. Not ones which can really relate to the world we live in today, or financial scenarios.
+
+Why pick finance, money, and investment as a topic? Why bother applying automata to a discipline like this one?
+
+Business and financial markets are a great example of a system where past data cannot directly indicate a future pattern. The past can offer clues about, say what stocks might go up or down in price, but it cannot strongly guarantee an outcome. Machine learning and artificial intelligence succeed when the past stays consistent and forms a detectable pattern. However, if the future changes from the past, they will fail. If the future constantly changes, both machine learning and artificial intelligence won't be useful. They both, by definition, work off the assumption a pattern exists.
+
