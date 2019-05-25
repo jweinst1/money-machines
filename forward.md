@@ -12,5 +12,5 @@ Financial markets also prove to be an excellent application for CA modeling beca
 
 At any point in time, the price of a stock is determined by the demand, and the number of shares outstanding. However, what determines the demand, and the shares being bought and sold, is the state of many conditions in a system. Different factors influence the reluctance or preference of traders to buy or sell. These factors range from the individual trader, to how an individual trader views other stocks or other traders, and much, much more.
 
-Cellular automata allow us to model chaotic systems and understand the conditions and forces that drive them to certain states.
+Cellular automata allow us to model chaotic systems and understand the conditions and forces that drive them to certain states. It gives greater insight than machine learning and artificial intelligence do, becaude it conveys a greater explanation for the current state beyond patterns and trends. Exploring and investigating the uses of CA in financial modeling will provide a way to study scenarios like market crahses or spikes without having to have the pre-existing data for them, all that's needed is setting up the automata with the desired properties, members, and conditions.
 
