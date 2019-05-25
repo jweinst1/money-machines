@@ -1,5 +1,7 @@
 # Money Machines
 
+![](static/logo_big.png)
+
 *A blog about using cellular automata to model financial and investment markets.*
 
 `Money Machines` is a blog about using CA (cellular automata), and machines to simulate and study finanical and investment markets. It is an effort to greatly expand our understanding of CA, and automatan-based programming in complex, dynamic, finanical systems. This blog's intended audience are programmers, engineers, investment bankers, algorithmic traders, researchers, graduate students, and anyone with an interest in complex financial modeling and computer science. 
