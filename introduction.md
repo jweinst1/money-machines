@@ -33,6 +33,38 @@ Basic automata can be constructed from a set of discrete states with change via 
 
 A *one dimensional* automata is a machine which contains a single, finite row of cells. Each cell functions as an independent machine, locked in an order with neighboring machines that is constant throughout runtime. The cells transition through a concept of *generations*. One or more rules are applied to the cell's neighborhoods, for every cell in the automata. Changes to any cell are written to a new row of cells, that represent the incoming, next generation.
 
+For this automata, we will start with a row of `21` cells, all of them holding one signed integer, that will start with the value `1`. We pick a multiple of `3` because we want the row to be iterable by a neighborhood of 3. A neighborhood size for any autoamata should always be greater than 1. 
+
 ```c
-static int CELLS[24] = { 1 };
+#define CELL_COUNT 21
+static int CELLS[CELL_COUNT] = { 1 };
 ```
+
+### Rules
+
+In order for the row of cells to evolve or change, we need to apply specific rules onto it, and create subsequent generations of the cells. For this automata, we will only use *local* rules, which involve the cells adjacent to one another. In other articles and posts, more complex rules such as those involving the entire row or colony will be discussed.
+
+The rules we will use are based off a pattern of 3 cells that, if match, result in a new cell of some value in the enxt generation. It is important to note this example transitions immutably. Other automata may also transition mutably or produce events that mutate cells prior to transition. Below is the definition of the rule type:
+
+```c
+typedef struct {
+	int match1;
+	int match2;
+	int match3;
+	int next;
+} rule_t;
+
+```
+
+`match1`, `match2`, and `match3` hold the first, second, and third cell values that much be matched in order for `result` to be born into the next generation. Now, we can decide exactly what rules we want to have being applied.
+
+```c
+static rule_t RULES[] = {
+	{1, 1, 1, 0},
+	{0, 1, 0, 1},
+	{1, 0, 1, 0},
+	{0, 0, 0, 1}
+};
+```
+
+To simplify our first trial, we will pick four rules. They count only account for the values 0 or 1. Other automata can obviously hold many more and more complex values than just `0` and `1`.
