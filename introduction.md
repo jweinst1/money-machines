@@ -18,5 +18,13 @@ do
 } while(0);
 ``` 
 
-In the above while loop, the integer `x` is created inside the scope of the loop. The value of `x` is incremented by 1, before the loop terminating, and the scope hence closing.
+In the above while loop, the integer `x` is created inside the scope of the loop. The value of `x` is incremented by 1, before the loop terminating, and the scope hence closing. We can say the *lifetime* of *x* starts at ends within theose curly braces `{` and `}`. Nearly all programming languages use clearly defined lifetimes, such the one shown. Automata lifetimes are not always defined from the start. The lifetime of an automata can also be modified during the course of a simulation or a program.
 
+### Definition
+
+An automata in it's most fundamental representation can be defined as:
+
+> Let `Q` be a set of states { s_0, s_1, ... s_n }, where `s_0` is the initial state.
+> There is a function `T`, where for all states in Q, `T(s) in Q`.
+
+Basic automata can be constructed from a set of discrete states with change via a transition function.
