@@ -25,6 +25,14 @@ In the above while loop, the integer `x` is created inside the scope of the loop
 An automata in it's most fundamental representation can be defined as:
 
 > Let `Q` be a set of states { s_0, s_1, ... s_n }, where `s_0` is the initial state.
-> There is a function `T`, where for all states in Q, `T(s) in Q`.
+> There is a function `T`, where for all states in Q, `T(s) in Q` is true.
 
-Basic automata can be constructed from a set of discrete states with change via a transition function.
+Basic automata can be constructed from a set of discrete states with change via a transition function. For now, let's look at an implementation of a fundamental automata.
+
+## One Dimensional
+
+A *one dimensional* automata is a machine which contains a single, finite row of cells. Each cell functions as an independent machine, locked in an order with neighboring machines that is constant throughout runtime. The cells transition through a concept of *generations*. One or more rules are applied to the cell's neighborhoods, for every cell in the automata. Changes to any cell are written to a new row of cells, that represent the incoming, next generation.
+
+```c
+static int CELLS[24] = { 1 };
+```
