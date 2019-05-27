@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define CELL_COUNT 21
-static int CELLS[CELL_COUNT] = { 1 };
+static int CELLS[CELL_COUNT] = { 1, 0, 0, 1, 1, 0, 0, 0, 1 };
 
 typedef struct {
 	int match1;
@@ -15,7 +15,8 @@ static rule_t RULES[] = {
 	{1, 1, 1, 0},
 	{0, 1, 0, 1},
 	{1, 0, 1, 0},
-	{0, 0, 0, 1}
+	{0, 0, 0, 1},
+	{1, 0, 0, 0}
 };
 
 void cells_transition(int* next_gen, const int* cells)
@@ -37,7 +38,7 @@ void cells_transition(int* next_gen, const int* cells)
 			}
 		}
 		if(!found)
-			next_gen[i] = 0;
+			next_gen[i] = 1;
 	}
 }
 
@@ -54,6 +55,19 @@ void print_cells(const int* cells)
 int main(int argc, char const *argv[])
 {
 	int gen2[CELL_COUNT];
+	print_cells(CELLS);
+	cells_transition(gen2, CELLS);
+	print_cells(gen2);
+	cells_transition(CELLS, gen2);
+	print_cells(CELLS);
+	cells_transition(gen2, CELLS);
+	print_cells(gen2);
+	cells_transition(CELLS, gen2);
+	print_cells(CELLS);
+	cells_transition(gen2, CELLS);
+	print_cells(gen2);
+	cells_transition(CELLS, gen2);
+	print_cells(CELLS);
 	cells_transition(gen2, CELLS);
 	print_cells(gen2);
 	cells_transition(CELLS, gen2);

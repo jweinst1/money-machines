@@ -33,11 +33,11 @@ Basic automata can be constructed from a set of discrete states with change via 
 
 A *one dimensional* automata is a machine which contains a single, finite row of cells. Each cell functions as an independent machine, locked in an order with neighboring machines that is constant throughout runtime. The cells transition through a concept of *generations*. One or more rules are applied to the cell's neighborhoods, for every cell in the automata. Changes to any cell are written to a new row of cells, that represent the incoming, next generation.
 
-For this automata, we will start with a row of `21` cells, all of them holding one signed integer, that will start with the value `1`. We pick a multiple of `3` because we want the row to be iterable by a neighborhood of 3. A neighborhood size for any autoamata should always be greater than 1. 
+For this automata, we will start with a row of `21` cells, all of them holding one signed integer, that will start with the value `1` or `0`. We pick a multiple of `3` because we want the row to be iterable by a neighborhood of 3. A neighborhood size for any autoamata should always be greater than 1. 
 
 ```c
 #define CELL_COUNT 21
-static int CELLS[CELL_COUNT] = { 1 };
+static int CELLS[CELL_COUNT] = { 1, 0, 0, 1, 1, 0, 0, 0, 1 /*Rest is 0*/ };
 ```
 
 ### Rules
@@ -63,22 +63,57 @@ static rule_t RULES[] = {
 	{1, 1, 1, 0},
 	{0, 1, 0, 1},
 	{1, 0, 1, 0},
-	{0, 0, 0, 1}
+	{0, 0, 0, 1},
+	{1, 0, 0, 0}
 };
 ```
 
-To simplify our first trial, we will pick four rules. They count only account for the values 0 or 1. Other automata can obviously hold many more and more complex values than just `0` and `1`. As we go iterate through `CELLS`, if at any point a rule does not match it's pattern, we try the next rule. If none match, we will just emit a `0` cell to the next generation.
+To simplify our first trial, we will pick five rules. They count only account for the values 0 or 1. Other automata can obviously hold many more and more complex values than just `0` and `1`. As we go iterate through `CELLS`, if at any point a rule does not match it's pattern, we try the next rule. If none match, we will just emit a `1` cell to the next generation.
 
-Now let's produce our first generation. We will also write a function to print the new cells so we can visualize each new row.
+Now let's produce our first generation, with a transition function:
 
 ```c
-
-void cells_transition(int* next, const int* cells)
+void cells_transition(int* next_gen, const int* cells)
 {
 	unsigned i;
-	for(i = 0; i < next - 2; i++)
+	for(i = 0; i < CELL_COUNT - 2; i++)
 	{
-
+		unsigned j;
+		int found = 0;
+		for(j = 0; j < (sizeof(RULES)/sizeof(rule_t)); j++)
+		{
+			if(RULES[j].match1 == cells[i] &&
+				RULES[j].match2 == cells[i + 1] &&
+				RULES[j].match3 == cells[i + 2]
+				)
+			{
+				next_gen[i] = RULES[j].next;
+				found = 1;
+			}
+		}
+		if(!found)
+			next_gen[i] = 1;
 	}
 }
 ```
+
+*For those unfamiliar with the C language, `sizeof(<array>)/sizeof(<type>)` is an expression to calculate the number of items in an array*
+
+### Results
+
+Running that automatan for several generations will produce the following results. The first row is the `0` generation before any rules are applied.
+
+```
+1 0 0 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 
+0 1 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 
+1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 1 1 0 
+0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 1 1 0 0 
+1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 1 0 1 0 
+0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 0 1 0 0 
+1 0 1 0 1 0 1 0 1 0 0 0 0 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 1 0 1 1 1 1 1 0 1 0 1 0 0 
+1 0 1 0 1 0 1 0 1 0 0 0 1 0 1 0 1 0 1 0 
+```
+
+We can observe that, regions of `0` cells appear to inhabit a moving and alternating pattern, slowly shifting from either nearly all `0` or all `1`, to `101` sequencing. For more information on elementary cellular automata, [see this link.](https://en.wikipedia.org/wiki/Elementary_cellular_automaton)
+
