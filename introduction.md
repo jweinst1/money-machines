@@ -67,4 +67,18 @@ static rule_t RULES[] = {
 };
 ```
 
-To simplify our first trial, we will pick four rules. They count only account for the values 0 or 1. Other automata can obviously hold many more and more complex values than just `0` and `1`.
+To simplify our first trial, we will pick four rules. They count only account for the values 0 or 1. Other automata can obviously hold many more and more complex values than just `0` and `1`. As we go iterate through `CELLS`, if at any point a rule does not match it's pattern, we try the next rule. If none match, we will just emit a `0` cell to the next generation.
+
+Now let's produce our first generation. We will also write a function to print the new cells so we can visualize each new row.
+
+```c
+
+void cells_transition(int* next, const int* cells)
+{
+	unsigned i;
+	for(i = 0; i < next - 2; i++)
+	{
+
+	}
+}
+```
