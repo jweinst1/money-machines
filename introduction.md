@@ -117,3 +117,16 @@ Running that automatan for several generations will produce the following result
 
 We can observe that, regions of `0` cells appear to inhabit a moving and alternating pattern, slowly shifting from either nearly all `0` or all `1`, to `101` sequencing. For more information on elementary cellular automata, [see this link.](https://en.wikipedia.org/wiki/Elementary_cellular_automaton)
 
+## Market Type
+
+Elementary automata are quite limited in their ability to model and predict real world scenarios. They can only represent binary entities. In order to accurately depict a market, we need to use automata that can hold multiple values. Specifically, we want to use automata with fields that can hold quanities, such as the supply of an item or a currency.
+
+For this next example, we will use a very simple trader model called the `tcell`:
+
+```c
+typedef struct {
+	float cash;
+	float supply;
+} tcell;
+```
+
