@@ -121,12 +121,33 @@ We can observe that, regions of `0` cells appear to inhabit a moving and alterna
 
 Elementary automata are quite limited in their ability to model and predict real world scenarios. They can only represent binary entities. In order to accurately depict a market, we need to use automata that can hold multiple values. Specifically, we want to use automata with fields that can hold quanities, such as the supply of an item or a currency.
 
-For this next example, we will use a very simple trader model called the `tcell`:
+For this next example, we will use a very simple trader model called the `buyer_t`:
 
 ```c
 typedef struct {
 	float cash;
 	float supply;
-} tcell;
+} buyer_t;
 ```
 
+*Note: On most platforms, the `float` type is implemented as a single precision, 32 bit floating point number.*
+
+A `buyer_t` is a cell which possess two *quantities*, cash and supply. Cash is an anonymous currency (one and only one kind exists) that can be traded between `buyer_t` for more supply. Supply represents a singular, annonymous item that can be bought with cash. In a real market, there will be many items, and every cell or entity would possess multiple supplies. However, many mechanicisms and changes can still be studied from fundamental scenarios like this.
+
+For comparison, the `Python` version of the `buyer_t` would look like this:
+
+```py
+class Buyer(object):
+
+	def __init__(self, cash=0.0, supply=0.0):
+		self.cash = cash
+		self.supply = supply
+```
+
+Several facets of the buyer behavior will be explored and discussed.
+
+### Price
+
+One of the most rudimentary concepts of a market is the price of an item. Price is often though of as a quotient of demand and supply, such that having high demand and low supply leads to a higher price. For this example, a buyer does not have a fixed, quantized demand. Yet, they can show a willingness and desire to buy more supply based on several factors. For two buyers to make a transaction, one sells some of their supply for cash, while the other pays cash to obtain more supply.
+
+Keeping cash and supply within a balancing state is one way to determine a price. A balancing state means a state where two values will attempt to influence decisions in order to best make themselves as equal to each other as possible. This would imply that if a `buyer_t` has a lot of cash but only a small amount of supply, the price for their supply will be very high.
