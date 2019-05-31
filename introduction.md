@@ -150,4 +150,8 @@ Several facets of the buyer behavior will be explored and discussed.
 
 One of the most rudimentary concepts of a market is the price of an item. Price is often though of as a quotient of demand and supply, such that having high demand and low supply leads to a higher price. For this example, a buyer does not have a fixed, quantized demand. Yet, they can show a willingness and desire to buy more supply based on several factors. For two buyers to make a transaction, one sells some of their supply for cash, while the other pays cash to obtain more supply.
 
-Keeping cash and supply within a balancing state is one way to determine a price. A balancing state means a state where two values will attempt to influence decisions in order to best make themselves as equal to each other as possible. This would imply that if a `buyer_t` has a lot of cash but only a small amount of supply, the price for their supply will be very high.
+Keeping cash and supply within a balancing state is one way to determine a price. A balancing state means a state where two values will attempt to influence decisions in order to best make themselves as equal to each other as possible. This would imply that if a `buyer_t` has a lot of cash but only a small amount of supply, the price for their supply will be very high. We can also change this balancing state by either using a `cash / supply` ratio or `supply / cash` ratio. For now, we will stick with `cash/supply`, because we want price to increase as supply decreases.
+
+### Spending
+
+Another fact of this automata is spending.
