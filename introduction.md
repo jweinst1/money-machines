@@ -117,6 +117,8 @@ Running that automatan for several generations will produce the following result
 
 We can observe that, regions of `0` cells appear to inhabit a moving and alternating pattern, slowly shifting from either nearly all `0` or all `1`, to `101` sequencing. For more information on elementary cellular automata, [see this link.](https://en.wikipedia.org/wiki/Elementary_cellular_automaton)
 
+The full source code sample to produce the above cellular patterns is available [here](/examples/introduction_one_dimensional/main.c)
+
 ## Market Type
 
 Elementary automata are quite limited in their ability to model and predict real world scenarios. They can only represent binary entities. In order to accurately depict a market, we need to use automata that can hold multiple values. Specifically, we want to use automata with fields that can hold quanities, such as the supply of an item or a currency.
@@ -154,4 +156,26 @@ Keeping cash and supply within a balancing state is one way to determine a price
 
 ### Spending
 
-Another fact of this automata is spending.
+Another factor of the buyer automata is *spending*. Once a price is determined for a particular buyer, another buyer can determine they will spend money according to that price. If we follow the principle of equilibrium, a buyer will spend more when their money is high and their supply is low. The buyer automata uses floating point numbers to allow for a more realistic pricing and supply modeling (e.g 0.5 pounds of rice). The quantity that a buyer chooses to buy must be dependant on their total amount of cash, and the amount of cash relative to their supply. First, we can determine the amount of items they will buy with
+
+```
+B_i = B_p / S_p
+```
+
+Where,
+
+* `B_p` is the buyer's price
+* `S_p` is the seller's price
+
+In expanded form, this will be:
+
+```
+B_i = (B_c / B_s) / (S_c / S_s)
+```
+
+Where,
+
+* `B_c`, `S_c` , are the buyer's and seller's cash
+* `B_s`, `S_s`, are the buyer's and seller's supply
+
+It's very important for the buying cell's price to be on the top part of the equation, because we want to derive a quantity for the transaction that best fits the buying cell. Transactions in this automata arrangement are done with respective to both prices, but a transaction is always a *purchase*. Every cell will get a chance to purchase in every generation.
