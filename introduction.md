@@ -179,3 +179,47 @@ Where,
 * `B_s`, `S_s`, are the buyer's and seller's supply
 
 It's very important for the buying cell's price to be on the top part of the equation, because we want to derive a quantity for the transaction that best fits the buying cell. Transactions in this automata arrangement are done with respective to both prices, but a transaction is always a *purchase*. Every cell will get a chance to purchase in every generation.
+
+### Transaction
+
+Now that we have established how each `buyer_t` will determine the amount of supply it wants to purchase from another cell, and the price it will pay, we need to determine the order in which cells will perform transactions or react. For the course of this article, only the *round robin* approach will be covered. 
+
+Round robin ordering instructs each cell to buy and sell with all other cells once per generation. The order of this singular buy and sell is determined manually by the order in which the cells reside in the internal buffer or array. This approach allows for the most simple scheme of allowing the cells to interact. More complex automata will have far more sophisticated ordering methods, even one's which changes the order at every generation.
+
+### Implementation
+
+We can implement the model of a `buyer_t` performing transactions via the following:
+
+```c
+
+float buyer_price(const buyer_t* b)
+{
+	return b->cash / b->supply;
+}
+
+float buyer_wanted_supply(const buyer_t* buying, const buyer_t* selling)
+{
+	return(buying->cash / buying->supply) / (selling->cash / selling->supply);
+}
+
+void buyer_transaction(buyer_t* buying, buyer_t* selling)
+{
+	float change_amount = buyer_wanted_supply(buying, selling);
+	float cash_amount = change_amount * buyer_price(selling);
+	buying->supply += change_amount;
+	buying->cash -= cash_amount;
+	selling->supply -= change_amount;
+	selling->cash += cash_amount;
+}
+
+void buyer_trade(buyer_t* cells, unsigned size)
+{
+	unsigned i;
+	for(i = 0; i < size; i++) {
+		unsigned j;
+		for(j = i + 1; j < size; j++) {
+			buyer_transaction(cells + i, cells + j);
+		}
+	}
+}
+```
